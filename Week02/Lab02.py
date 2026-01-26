@@ -10,6 +10,10 @@ if playerChoice < 1 or playerChoice > 3:
 else:
     computerChoice = random.randint(1,3)
     
+    #shows the choice:
+    print("Your Chose: ", playerChoice)
+    print("Computer Chose:",computerChoice)
+
     # use if/elif/else to determine the winner logic
     if playerChoice == computerChoice:
         print("It's a Tie!")
@@ -21,3 +25,6 @@ else:
         print("Paper beats Rock - You Win!")
     else:
         print("YOU LOST!")
+    
+    if playerChoice != 2:
+        print("You didn't pick the classic Rock...")
