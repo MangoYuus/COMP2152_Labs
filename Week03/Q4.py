@@ -1,4 +1,4 @@
-# Question 4 : 
+# Question 4 : Class Attendance (Sets - Uniqueness and Operations)
 mon_class = {"Loy","Joy","Roy","Simon","Zoy"}
 wed_class = {"Joy","Rory","Bob","Zu"}
 

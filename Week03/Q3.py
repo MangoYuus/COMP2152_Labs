@@ -1,4 +1,4 @@
-# Question 3 : Map
+# Question 3 : Map - calculate the x&y and distance between differents points
 point1 = (3,5)
 point2 = (7,2)
 print(f"Point 1:{point1}\nPoint 2:{point2}\n")
