@@ -1,0 +1,4 @@
+2026-02-22 23:51:46,ping,google.com,14,Success
+2026-02-22 23:51:58,nslookup,openai.com,Not found,Failed
+2026-02-22 23:51:59,ipconfig,all,FA-3D-C6-C3-9B-D8 / 10.0.0.145,Captured
+2026-02-22 23:52:00,arp,local,6 devices,Captured
