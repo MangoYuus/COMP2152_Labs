@@ -19,8 +19,12 @@ class Scanner:
     #   If self.results is empty: print "  (no results)"
     #   Otherwise: print each result with "  " indent
     def display_results(self):
-        pass
-
+        print(f"Result for{self.target}:")
+        if not self.results:
+            print("No results")
+        else:
+            for result in self.results:
+                print(f"    {result}")
 
 class PortScanner(Scanner):
     """Child class — scans for open ports."""
@@ -29,7 +33,8 @@ class PortScanner(Scanner):
     #   Call the parent constructor: super().__init__(target)
     #   Store self.ports (a list of port numbers)
     def __init__(self, target, ports):
-        pass
+        super().__init__(target)
+        self.ports = ports
 
     # TODO: Write scan(self)
     #   Loop through self.ports
@@ -39,7 +44,17 @@ class PortScanner(Scanner):
     #     Else: append f"Port {port}: closed" to self.results
     #     Close the socket
     def scan(self):
-        pass
+        for port in self.ports:
+            try:
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sock.settimeout(1)
+                result = sock.connect_ex((self.target, port))
+                if result == 0:
+                    self.results.append(f"Port {port}: OPEN")
+                else:
+                    self.results.append(f"Port {port}: CLOSED")
+            except socket.error as e:
+                self.results.append(f"Port {port}: {e}")
 
 
 class HTTPScanner(Scanner):
@@ -49,7 +64,8 @@ class HTTPScanner(Scanner):
     #   Call the parent constructor: super().__init__(target)
     #   Store self.paths (a list of URL paths like "/", "/admin")
     def __init__(self, target, paths):
-        pass
+        super().__init__(target)
+        self.paths = paths
 
     # TODO: Write scan(self)
     #   Loop through self.paths
@@ -58,7 +74,12 @@ class HTTPScanner(Scanner):
     #       Append f"{path} → {response.status} (accessible)" to self.results
     #     Except: Append f"{path} → NOT FOUND" to self.results
     def scan(self):
-        pass
+        for path in self.paths:
+            try:
+                response = urllib.request.urlopen(f"http://{self.target}/{path}")
+                self.results.append(f"HTTP {path} → {response.status} (accessible)")
+            except Exception:
+                self.results.append(f"{path} → NOT FOUND")
 
 
 # --- Main (provided) ---
